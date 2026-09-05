@@ -1,0 +1,17 @@
+# testcase-design 中间产物
+testing/mindmaps/_drafts/
+bugs/assets/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# UI Automation artifacts
+.claude/skills/ui-automation/artifacts/_analysis.md
+.claude/skills/ui-automation/artifacts/_verification.md
+ui-tests/node_modules/
+ui-tests/allure-results/
+ui-tests/allure-report/
+ui-tests/test-results/
+ui-tests/.auth-state.json
+ui-tests/.env

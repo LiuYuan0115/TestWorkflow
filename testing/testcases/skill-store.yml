@@ -1,0 +1,2181 @@
+# skill-store 测试用例 YAML（由 /testcase-build 生成）
+# 源文件：testing/mindmaps/skill-store.md
+# 生成时间：2026-05-22
+
+- id: SS-001
+  title: 首次进入技能库页面加载技能列表
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录
+    - 网络正常
+  steps:
+    - action: 打开应用，导航到"技能库"页面
+      expected: ""
+    - action: 观察页面加载过程
+      expected: ""
+  expected_result:
+    - 加载期间显示骨架屏（6 张占位卡片）
+    - 加载完成后展示技能卡片列表，默认按热度排序
+    - 页面顶部显示统计指标卡：云端目录数、已安装数、系统预装数、官方精选数、安装失败数
+    - 默认激活"技能库"Tab
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-002
+  title: 未登录用户浏览技能库
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户未登录
+  steps:
+    - action: 打开技能库页面
+      expected: ""
+    - action: 观察技能列表展示
+      expected: ""
+  expected_result:
+    - 技能列表正常加载展示
+    - 卡片上的安装/对话按钮可见
+    - 统计指标卡中已安装数为 0
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-003
+  title: 普通云端技能卡片展示完整信息
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在云端技能（非预装、非精选）
+  steps:
+    - action: 在技能库列表找到一个普通云端技能卡片
+      expected: ""
+    - action: 观察卡片内容
+      expected: ""
+  expected_result:
+    - 卡片显示技能图标（根据分类/关键词匹配色调）
+    - 显示技能名称（单行截断）
+    - 显示技能描述（最多两行截断）
+    - 最多显示 3 个标签 Pill
+    - 显示安装量（如"1.2k"）
+    - 底部显示来源标签（"云端技能"/"我的导入"）和安装状态标签
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-004
+  title: 官方精选技能卡片带精选标记
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在 featured=true 的技能
+  steps:
+    - action: 找到标有"官方精选"的技能卡片
+      expected: ""
+    - action: 观察卡片样式
+      expected: ""
+  expected_result:
+    - 卡片具有金色渐变背景
+    - 卡片顶部显示"官方精选"徽章（金色带 Sparkles 图标）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-005
+  title: 系统预装技能卡片展示预装标记
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在系统预置/平台预装/OEM预装技能
+  steps:
+    - action: 找到系统预装技能的卡片
+      expected: ""
+    - action: 观察卡片样式
+      expected: ""
+  expected_result:
+    - 卡片右上角显示绿色勾圆形标记
+    - 状态标签显示"默认已安装"
+    - 底部不显示来源标签
+    - 操作按钮显示"对话"而非"安装"
+    - 无"卸载"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-006
+  title: 从技能库 Tab 切换到我的技能 Tab
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录且已安装若干技能
+  steps:
+    - action: 在技能库页面，点击"我的技能"Tab
+      expected: ""
+    - action: 观察列表变化
+      expected: ""
+  expected_result:
+    - 列表仅显示 userInstalled=true 的技能
+    - Tab 上"我的技能"显示已安装技能数量徽章
+    - 安装状态筛选区域隐藏（仅在"技能库"Tab 可见）
+    - 分类/标签筛选仍可用
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-007
+  title: 从我的技能 Tab 切回技能库 Tab
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 当前在"我的技能"Tab
+  steps:
+    - action: 点击"技能库"Tab
+      expected: ""
+  expected_result:
+    - 列表恢复显示全部技能
+    - 安装状态筛选区域重新出现
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-008
+  title: 按"A股"分类筛选技能
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在 market="A股" 的技能
+  steps:
+    - action: 在"分类与策展"区域点击"A股"分类 Pill
+      expected: ""
+  expected_result:
+    - 列表仅显示 market="A股" 的技能
+    - "A股"Pill 高亮为选中状态
+    - 筛选结果计数更新
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-009
+  title: 按"官方预置"分类筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在 official=true 的技能
+  steps:
+    - action: 点击"官方预置"分类 Pill
+      expected: ""
+  expected_result:
+    - 列表仅显示 official=true 的技能
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-010
+  title: 切换分类后标签自动更新
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 不同分类下技能拥有不同的标签
+  steps:
+    - action: 选择"全部"分类，观察标签筛选区的可选标签
+      expected: ""
+    - action: 切换到"A股"分类，再次观察
+      expected: ""
+  expected_result:
+    - 标签筛选区仅显示当前分类下技能实际拥有的标签
+    - 之前选中的标签若在新分类中不存在，自动取消选中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-011
+  title: 选择单个标签筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 标签筛选区显示多个可选标签
+  steps:
+    - action: 点击一个标签（如"A股"）
+      expected: ""
+  expected_result:
+    - 列表仅显示包含该标签的技能
+    - 被点击标签高亮并带选中阴影效果
+    - 出现"清除"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-012
+  title: 选择多个标签组合筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 标签筛选区显示多个可选标签
+  steps:
+    - action: 依次点击两个标签（如"A股"和"ESG"）
+      expected: ""
+  expected_result:
+    - 列表显示包含任意一个选中标签的技能（OR 逻辑）
+    - 两个标签均高亮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-013
+  title: 取消已选标签
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 已选中一个标签
+  steps:
+    - action: 再次点击已选中的标签
+      expected: ""
+  expected_result:
+    - 该标签取消选中，列表恢复
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-014
+  title: 点击"清除"按钮清空所有标签
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 已选中一个或多个标签
+  steps:
+    - action: 点击标签筛选区的"清除"按钮
+      expected: ""
+  expected_result:
+    - 所有标签取消选中
+    - "清除"按钮消失
+    - 列表恢复为无标签筛选状态
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-015
+  title: 开启官方精选筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中存在精选和非精选技能
+  steps:
+    - action: 点击"官方精选"FilterPill
+      expected: ""
+  expected_result:
+    - 列表仅显示 featured=true 的技能
+    - "官方精选"Pill 高亮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-016
+  title: 按"已安装"状态筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户已安装若干技能，且存在未安装的技能
+  steps:
+    - action: 在技能库 Tab 的"安装状态"区域点击"已安装"
+      expected: ""
+  expected_result:
+    - 列表仅显示已安装或系统预装的技能
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-017
+  title: 按"未安装"状态筛选
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 存在未安装的云端技能
+  steps:
+    - action: 点击"未安装"筛选
+      expected: ""
+  expected_result:
+    - 列表仅显示既非已安装也非系统预装的技能
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-018
+  title: 输入技能名称关键词搜索
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 技能库中存在名为"ESG 评分助手"的技能
+  steps:
+    - action: 在搜索框输入"ESG"
+      expected: ""
+  expected_result:
+    - 列表实时过滤，仅显示名称/描述/标签等包含"ESG"的技能
+    - 搜索不区分大小写
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-019
+  title: 输入描述关键词搜索
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 某技能描述中包含"量化"但名称不包含
+  steps:
+    - action: 在搜索框输入"量化"
+      expected: ""
+  expected_result:
+    - 该技能出现在搜索结果中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-020
+  title: 清空搜索框恢复全部结果
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 搜索框有搜索词且列表已过滤
+  steps:
+    - action: 清空搜索框
+      expected: ""
+  expected_result:
+    - 列表恢复为当前筛选条件下的全部技能
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-021
+  title: 分类+标签+搜索三重叠加
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库中有多样化的技能
+  steps:
+    - action: 选择分类"A股"
+      expected: ""
+    - action: 选择标签"ESG"
+      expected: ""
+    - action: 在搜索框输入"评分"
+      expected: ""
+  expected_result:
+    - 列表仅显示同时满足 market=A股 + 含标签 ESG + 名称/描述含"评分"的技能
+    - 各筛选条件独立高亮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-022
+  title: 安装一个不需要配置的云端技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户已登录
+    - 存在一个未安装、source=cloud、无 setupSchema 的技能
+  steps:
+    - action: 在技能卡片上点击"安装"按钮
+      expected: ""
+    - action: 等待安装完成
+      expected: ""
+  expected_result:
+    - 按钮显示"安装中…"且禁用
+    - 安装成功后卡片状态变为"已安装"
+    - 操作按钮变为"对话"
+    - 统计指标中"已安装"数 +1
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-023
+  title: 安装需要 API Key 配置的技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 存在一个未安装、有 setupSchema 的云端技能
+  steps:
+    - action: 点击该技能的"安装"按钮
+      expected: ""
+    - action: 在弹出的配置弹窗中填写必填项
+      expected: ""
+    - action: 点击"保存并安装"
+      expected: ""
+  expected_result:
+    - 弹出 ExtensionInstallConfigModal 配置弹窗
+    - 弹窗标题显示"安装 [技能名]"
+    - 提示"这个技能依赖外部配置或 API Key"
+    - 填写完成后提交，技能安装成功
+    - 弹窗自动关闭
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-024
+  title: 从卡片上卸载已安装技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已安装一个非预装的云端技能
+  steps:
+    - action: 在技能卡片底部点击"卸载"按钮
+      expected: ""
+    - action: 等待卸载完成
+      expected: ""
+  expected_result:
+    - 按钮显示"卸载中…"且禁用
+    - 卸载成功后卡片状态变为"未安装"
+    - 操作按钮变为"安装"
+    - 统计指标中"已安装"数 -1
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-025
+  title: 从详情抽屉卸载技能
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户已安装一个非预装技能，详情抽屉打开
+  steps:
+    - action: 点击技能卡片打开详情抽屉
+      expected: ""
+    - action: 点击底部"卸载"按钮
+      expected: ""
+    - action: 等待完成
+      expected: ""
+  expected_result:
+    - 卸载成功后详情抽屉自动关闭
+    - 技能卡片状态更新为"未安装"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-026
+  title: 已安装技能直接开始对话
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 某技能已安装且不需要配置（setupStatus=configured 或无 setupSchema）
+  steps:
+    - action: 在技能卡片上点击"对话"按钮
+      expected: ""
+  expected_result:
+    - 页面跳转到对话界面，携带该技能上下文
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-027
+  title: 系统预装技能直接开始对话
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 存在系统预装技能
+  steps:
+    - action: 在系统预装技能卡片上点击"对话"按钮
+      expected: ""
+  expected_result:
+    - 页面跳转到对话界面
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-028
+  title: 在详情页点击对话按钮
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户打开已安装技能的详情抽屉
+  steps:
+    - action: 点击技能卡片打开详情抽屉
+      expected: ""
+    - action: 点击底部"对话"按钮
+      expected: ""
+  expected_result:
+    - 详情抽屉关闭
+    - 跳转到对话界面
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-029
+  title: 查看云端已安装技能详情
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 存在已安装的云端技能
+  steps:
+    - action: 点击该技能卡片
+      expected: ""
+  expected_result:
+    - 右侧滑出 SideDetailSheet 详情抽屉
+    - 顶部显示技能图标（64x64）、技能名称
+    - 显示状态标签（"已安装"绿色）、来源标签、分类标签
+    - 若 featured 则显示"官方精选"标签
+    - "技能介绍"区域显示完整 description
+    - "元信息"区域显示：最新版本、配置状态、来源地址、分类、市场、发布者、来源
+    - 若有标签显示"标签"区域
+    - 底部显示"对话"按钮和"卸载"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-030
+  title: 查看未安装云端技能详情
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 存在未安装的 source=cloud 技能
+  steps:
+    - action: 点击该技能卡片
+      expected: ""
+  expected_result:
+    - 状态标签显示"未安装"灰色
+    - 底部按钮显示"安装技能"
+    - 无"卸载"按钮
+    - 说明文字显示"云端技能安装后会加入'我的技能'"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-031
+  title: 查看系统预装技能详情
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 存在系统预装技能
+  steps:
+    - action: 点击该技能卡片
+      expected: ""
+  expected_result:
+    - 状态标签显示"默认已安装"金色
+    - 底部按钮显示"对话"
+    - 无"卸载"按钮
+    - 说明文字显示"系统预置技能默认随应用提供"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-032
+  title: 关闭详情抽屉
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 详情抽屉已打开
+  steps:
+    - action: 点击抽屉外的遮罩层
+      expected: ""
+  expected_result:
+    - 详情抽屉关闭
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-033
+  title: 从 GitHub 公开仓库成功导入技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录
+    - 有一个包含 SKILL.md 的 GitHub 公开仓库
+  steps:
+    - action: 点击页面顶部"导入技能"按钮
+      expected: ""
+    - action: 在导入面板的 GitHub 区域输入仓库 URL（如 https://github.com/owner/repo）
+      expected: ""
+    - action: 点击"从 GitHub 导入"
+      expected: ""
+    - action: 等待导入完成
+      expected: ""
+  expected_result:
+    - 按钮显示"导入中…"且禁用
+    - 导入成功后面板自动关闭
+    - 自动切换到"我的技能"Tab
+    - 新技能出现在列表中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-034
+  title: 从本地目录成功导入技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录
+    - 本地存在包含 SKILL.md 的技能目录
+  steps:
+    - action: 点击"导入技能"按钮
+      expected: ""
+    - action: 在导入面板点击"选择目录并导入"
+      expected: ""
+    - action: 在系统文件选择器中选择技能目录
+      expected: ""
+    - action: 等待导入完成
+      expected: ""
+  expected_result:
+    - 按钮显示"导入中…"且禁用
+    - 导入成功后面板关闭
+    - 自动切换到"我的技能"Tab
+    - 新技能出现在列表中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-035
+  title: 为已安装技能补充配置
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 存在已安装但 setupStatus≠configured 的技能
+  steps:
+    - action: 在技能卡片上点击"配置"按钮
+      expected: ""
+    - action: 在弹出的配置弹窗中填写配置项
+      expected: ""
+    - action: 点击"保存配置"
+      expected: ""
+  expected_result:
+    - 弹窗标题显示"配置 [技能名]"
+    - 如果有已保存的配置则自动填充
+    - 保存成功后弹窗关闭
+    - 技能状态从"需配置"变为可正常使用
+    - "配置"按钮变为"对话"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-036
+  title: 点击加载更多按钮追加技能
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 云端目录技能数量超过首页加载数（120 或 300）
+  steps:
+    - action: 滚动到技能列表底部
+      expected: ""
+    - action: 点击"加载更多"按钮
+      expected: ""
+    - action: 等待加载完成
+      expected: ""
+  expected_result:
+    - 按钮显示"加载中..."且禁用
+    - 新技能追加到列表末尾，不影响已有列表
+    - 加载完成后按钮恢复可点击
+    - 若无更多数据，"加载更多"按钮隐藏
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-037
+  title: 点击刷新按钮重新拉取目录
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 技能列表已展示
+  steps:
+    - action: 点击页面顶部"刷新技能"按钮
+      expected: ""
+    - action: 观察列表更新过程
+      expected: ""
+  expected_result:
+    - 显示"正在刷新云端技能"提示
+    - 列表重新加载最新数据
+    - 统计指标卡数字更新
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-038
+  title: admin 用户进入超管模式
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 当前登录用户 role=admin 或 super_admin
+  steps:
+    - action: 点击页面顶部"进入超管模式"按钮
+      expected: ""
+  expected_result:
+    - 按钮文字变为"退出超管模式"，样式变为 primary
+    - Tab 栏旁出现"超管模式"标记
+    - 技能卡片上的操作按钮变为"编辑"
+    - 列表数据切换为 admin catalog
+    - 出现"云端同步控制台"面板
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-039
+  title: 退出超管模式
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 当前在超管模式
+  steps:
+    - action: 点击"退出超管模式"按钮
+      expected: ""
+  expected_result:
+    - 恢复普通用户视图
+    - "超管模式"标记消失
+    - 卡片恢复安装/对话操作
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-040
+  title: 编辑云端技能的基础信息
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 超管模式下打开
+  steps:
+    - action: 在超管模式卡片上点击"编辑"
+      expected: ""
+    - action: 修改技能名称和描述
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 右侧滑出 SkillStoreAdminSheet
+    - 表单回显当前数据（Slug 不可编辑）
+    - 修改后点击保存，数据写入 control-plane
+    - 列表中技能信息立即更新
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-041
+  title: 修改技能分类和市场
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管编辑面板已打开
+  steps:
+    - action: 在"分类"下拉选择"数据工具"
+      expected: ""
+    - action: 在"市场"输入"A股"
+      expected: ""
+    - action: 在"技能类型"下拉选择"分析师"
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 保存成功
+    - 技能卡片分类和市场标签更新
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-042
+  title: 切换技能的"启用"和"官方精选"状态
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管编辑面板已打开
+  steps:
+    - action: 点击"启用技能"开关，使其变为关闭
+      expected: ""
+    - action: 点击"官方精选"开关，使其变为开启
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 保存成功
+    - 技能在公开库中不再展示（active=false）
+    - 技能标记为官方精选
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-043
+  title: 删除一个云端技能
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 超管模式下，选中一个非预装的云端技能
+  steps:
+    - action: 在编辑面板底部点击"删除技能"
+      expected: ""
+    - action: 等待删除完成
+      expected: ""
+  expected_result:
+    - 按钮显示"删除中…"
+    - 删除成功后编辑面板自动关闭
+    - 技能从列表中移除
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-044
+  title: 查看同步来源和运行记录
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管模式下，存在已配置的同步来源
+  steps:
+    - action: 观察超管模式下出现的"云端同步控制台"面板
+      expected: ""
+  expected_result:
+    - 显示同步来源列表，每个来源显示名称、状态（启用/停用）、同步模式、URL、最近运行时间
+    - 显示最近运行记录，每条记录显示名称、状态、开始时间、创建/更新/跳过数量
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-045
+  title: 手动触发同步
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管模式下，存在启用的同步来源
+  steps:
+    - action: 点击某个同步来源的"立即同步"按钮
+      expected: ""
+    - action: 等待同步完成
+      expected: ""
+  expected_result:
+    - 按钮显示"同步中..."且禁用
+    - 同步完成后运行记录刷新
+    - 自动切换到"技能库"Tab 查看更新结果
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-046
+  title: 首次加载技能目录网络超时
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 网络不可用或服务端无响应
+  steps:
+    - action: 断开网络或模拟超时
+      expected: ""
+    - action: 进入技能库页面
+      expected: ""
+  expected_result:
+    - 骨架屏消失后显示错误提示区域
+    - 错误区域包含错误图标、错误信息和"重试加载"按钮
+    - 点击"重试加载"按钮尝试重新拉取
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-047
+  title: 加载更多时网络失败
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 首页数据已加载成功，有更多数据
+  steps:
+    - action: 断开网络
+      expected: ""
+    - action: 点击"加载更多"按钮
+      expected: ""
+  expected_result:
+    - 显示"技能目录读取失败"错误
+    - 已加载的技能列表保持不变
+    - "加载更多"按钮恢复可点击状态
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-048
+  title: 安装技能时网络断开
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录，准备安装一个云端技能
+  steps:
+    - action: 断开网络
+      expected: ""
+    - action: 点击"安装"按钮
+      expected: ""
+  expected_result:
+    - 技能状态变为"安装失败"红色
+    - 卡片操作按钮变为"重试安装"（红色 danger 样式）
+    - 统计指标中"安装失败"数 +1
+    - 页面顶部显示"下载安装失败"错误信息
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-049
+  title: 安装失败后重试成功
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 某技能处于"安装失败"状态
+  steps:
+    - action: 恢复网络
+      expected: ""
+    - action: 点击"重试安装"按钮
+      expected: ""
+  expected_result:
+    - 重试安装成功后状态变为"已安装"
+    - "安装失败"计数 -1
+    - 错误信息清除
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-050
+  title: 卸载技能时服务端错误
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户已安装一个技能
+  steps:
+    - action: 模拟服务端 500 错误
+      expected: ""
+    - action: 点击"卸载"按钮
+      expected: ""
+  expected_result:
+    - 显示"卸载失败"错误信息
+    - 技能保持"已安装"状态不变
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-051
+  title: 输入无效 GitHub URL 导入
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 导入面板已打开
+  steps:
+    - action: 在 GitHub URL 输入框输入无效内容（如"not-a-url"）
+      expected: ""
+    - action: 点击"从 GitHub 导入"
+      expected: ""
+  expected_result:
+    - 显示导入错误提示
+    - 面板不关闭，保持当前输入
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-052
+  title: 输入不含 SKILL.md 的仓库 URL
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 导入面板已打开
+  steps:
+    - action: 输入一个不包含 SKILL.md 的有效 GitHub 仓库 URL
+      expected: ""
+    - action: 点击"从 GitHub 导入"
+      expected: ""
+  expected_result:
+    - 显示相应错误提示（识别失败或仓库无效）
+    - 面板不关闭
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-053
+  title: 本地导入未选择目录（取消选择）
+  dimension: 异常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 导入面板已打开
+  steps:
+    - action: 点击"选择目录并导入"
+      expected: ""
+    - action: 在系统文件选择器中点击取消
+      expected: ""
+  expected_result:
+    - 不报错
+    - 面板保持打开
+    - 按钮恢复为可点击状态
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-054
+  title: 安装技能时 Token 过期触发重新登录
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户已登录但 accessToken 已过期
+  steps:
+    - action: 点击安装某个技能
+      expected: ""
+  expected_result:
+    - 触发 onRequestAuth('login') 弹出登录引导
+    - 不显示通用错误信息
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-055
+  title: 导入技能时 Token 过期
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户已登录但 Token 过期
+  steps:
+    - action: 打开导入面板
+      expected: ""
+    - action: 输入 GitHub URL 并点击导入
+      expected: ""
+  expected_result:
+    - 显示"需要登录后才能导入技能"错误提示
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-056
+  title: 保存编辑时服务端返回错误
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管模式下打开编辑面板
+  steps:
+    - action: 修改技能信息
+      expected: ""
+    - action: 模拟服务端 500 错误
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 面板底部显示"保存错误"信息块
+    - 编辑面板保持打开，表单数据不丢失
+    - 可修正后重新保存
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-057
+  title: 删除技能时服务端拒绝
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管模式下打开编辑面板
+  steps:
+    - action: 点击"删除技能"
+      expected: ""
+    - action: 模拟服务端返回错误
+      expected: ""
+  expected_result:
+    - 显示"删除失败"错误信息
+    - 技能保持在列表中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-058
+  title: 手动触发同步时失败
+  dimension: 异常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 超管模式下，有同步来源
+  steps:
+    - action: 点击某来源"立即同步"
+      expected: ""
+    - action: 模拟同步执行失败
+      expected: ""
+  expected_result:
+    - 显示"同步执行失败"错误
+    - 按钮恢复为"立即同步"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-059
+  title: 安装进行中再次点击安装按钮
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 正在安装某技能（installingSlug 有值）
+  steps:
+    - action: 在技能 A 安装进行中，观察技能 A 卡片的安装按钮
+      expected: ""
+  expected_result:
+    - 安装按钮显示"安装中…"且 disabled
+    - 无法重复点击
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-060
+  title: 安装进行中尝试卸载同一技能
+  dimension: 异常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 正在安装某技能
+  steps:
+    - action: 在安装进行中查看该技能的卸载按钮
+      expected: ""
+  expected_result:
+    - 卸载按钮不可见（因为技能尚未安装完成）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-061
+  title: 导入中尝试关闭导入面板
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - GitHub 或本地导入正在进行中
+  steps:
+    - action: 在导入进行中点击面板遮罩层或关闭按钮
+      expected: ""
+  expected_result:
+    - 面板不关闭（导入中禁止关闭）
+    - 导入操作继续执行
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-062
+  title: 输入 1 个字符搜索
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 技能库已加载
+  steps:
+    - action: 在搜索框输入一个字符"A"
+      expected: ""
+  expected_result:
+    - 列表过滤出名称/描述/标签等包含"A"的技能
+    - 搜索正常工作，无卡顿
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-063
+  title: 输入超长字符串搜索（200字符）
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 技能库已加载
+  steps:
+    - action: 在搜索框粘贴 200 字符的字符串
+      expected: ""
+  expected_result:
+    - 搜索正常执行，结果为空（无匹配）
+    - 搜索框正常显示内容（可能截断展示）
+    - 无页面卡顿或崩溃
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-064
+  title: 输入纯空格搜索
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 技能库已加载
+  steps:
+    - action: 在搜索框输入 3 个空格
+      expected: ""
+  expected_result:
+    - trim 后为空字符串，列表不过滤，显示全部技能
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-065
+  title: 输入特殊字符搜索
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 技能库已加载
+  steps:
+    - action: 在搜索框输入 <script>alert(1)</script>
+      expected: ""
+  expected_result:
+    - 搜索正常执行，结果为空
+    - 不触发 XSS，页面无异常
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-066
+  title: 所有筛选条件叠加后结果为空
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 技能库已加载
+  steps:
+    - action: 选择一个分类（如"组合与风险"）
+      expected: ""
+    - action: 开启"官方精选"
+      expected: ""
+    - action: 选择一个不在该分类下的标签
+      expected: ""
+  expected_result:
+    - 显示空状态组件："当前筛选条件下暂无技能"
+    - 提示"请尝试切换分类或标签查看其它技能"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-067
+  title: 技能拥有超过 3 个标签时卡片只显示前 3 个
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 存在一个拥有 5 个标签的技能
+  steps:
+    - action: 观察该技能的卡片
+      expected: ""
+  expected_result:
+    - 卡片上只显示前 3 个标签 Pill
+    - 详情抽屉中显示全部标签
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-068
+  title: 技能下载量为 0 时不显示安装量标签
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 存在一个 downloadCount=0 或 null 的技能
+  steps:
+    - action: 观察该技能卡片
+      expected: ""
+  expected_result:
+    - 卡片不显示安装量标签（无下载图标和数字）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-069
+  title: 技能下载量超过 1000 显示缩写
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 存在 downloadCount=1500 的技能
+  steps:
+    - action: 观察该技能卡片
+      expected: ""
+  expected_result:
+    - 安装量显示为"1.5k"格式
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-070
+  title: 技能名称清空后保存
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 超管编辑面板打开
+  steps:
+    - action: 清空技能名称输入框
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 提交空字符串 name，观察服务端是否拦截或前端提示
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-071
+  title: 标签输入格式：逗号分隔带多余空格
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 超管编辑面板打开
+  steps:
+    - action: 在标签输入框输入"  A股 , ESG ,  , 量化  "
+      expected: ""
+    - action: 点击"保存修改"
+      expected: ""
+  expected_result:
+    - 解析后标签为 ["A股", "ESG", "量化"]，自动过滤空字符串和前后空格
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-072
+  title: 输入空 URL 点击导入
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 导入面板打开
+  steps:
+    - action: 不输入任何内容
+      expected: ""
+    - action: 点击"从 GitHub 导入"
+      expected: ""
+  expected_result:
+    - 显示错误提示
+    - 不发送导入请求
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-073
+  title: 输入非 GitHub 域名 URL
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 导入面板打开
+  steps:
+    - action: 输入"https://gitlab.com/owner/repo"
+      expected: ""
+    - action: 点击"从 GitHub 导入"
+      expected: ""
+  expected_result:
+    - 显示错误提示或导入失败
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-074
+  title: GitHub 导入中不能同时本地导入
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 导入面板已打开
+  steps:
+    - action: 输入 GitHub URL 并点击"从 GitHub 导入"
+      expected: ""
+    - action: 在导入进行中点击"选择目录并导入"
+      expected: ""
+  expected_result:
+    - "选择目录并导入"按钮处于 disabled 状态
+    - 无法同时触发两种导入
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-075
+  title: 本地导入中 GitHub 导入按钮不可点击
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 导入面板打开
+  steps:
+    - action: 点击"选择目录并导入"开始本地导入
+      expected: ""
+    - action: 观察"从 GitHub 导入"按钮状态
+      expected: ""
+  expected_result:
+    - "从 GitHub 导入"按钮 disabled
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-076
+  title: 桌面端宽屏下技能卡片 3 列展示
+  dimension: 兼容性
+  priority: P1
+  platform: desktop
+  precondition:
+    - 使用桌面端应用（xl 断点以上，≥1280px）
+  steps:
+    - action: 打开技能库页面
+      expected: ""
+    - action: 观察卡片网格布局
+      expected: ""
+  expected_result:
+    - 技能卡片按 3 列排布
+    - 统计指标卡按 5 列排布
+    - 卡片间距均匀（gap-5）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-077
+  title: 中等宽度下技能卡片 2 列展示
+  dimension: 兼容性
+  priority: P2
+  platform: desktop
+  precondition:
+    - 窗口宽度为中等（md 断点，≥768px 且 <1280px）
+  steps:
+    - action: 调整窗口宽度到 800px 左右
+      expected: ""
+  expected_result:
+    - 技能卡片按 2 列排布
+    - 统计指标卡按 2 列排布
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-078
+  title: 窄屏下技能卡片单列展示
+  dimension: 兼容性
+  priority: P2
+  platform: desktop
+  precondition:
+    - 窗口宽度小于 768px
+  steps:
+    - action: 将窗口缩小到 500px 宽
+      expected: ""
+  expected_result:
+    - 技能卡片按 1 列垂直排布
+    - 统计指标卡按 1 列排布
+    - 所有内容正常显示无溢出
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-079
+  title: 深色模式下技能库页面正常显示
+  dimension: 兼容性
+  priority: P1
+  platform: desktop
+  precondition:
+    - 系统或应用设置为深色模式
+  steps:
+    - action: 打开技能库页面
+      expected: ""
+    - action: 检查各组件颜色
+      expected: ""
+  expected_result:
+    - 页面背景使用深色
+    - 卡片背景使用深色变体
+    - 状态标签色彩在深色模式下可读
+    - 官方精选卡片金色渐变在深色下正确显示
+    - 搜索框、筛选 Pill、标签 Pill 均使用 dark: 变体颜色
+    - 无白色块或颜色不协调区域
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-080
+  title: 有本地缓存快照时首屏秒开
+  dimension: 性能
+  priority: P1
+  platform: desktop
+  tags:
+    - 性能测试
+  precondition:
+    - 之前已成功加载过技能库（有 catalogSnapshot 缓存）
+  steps:
+    - action: 重新打开技能库页面
+      expected: ""
+    - action: 观察首屏加载速度
+      expected: ""
+  expected_result:
+    - 首屏立即展示缓存的技能列表，无骨架屏闪烁
+    - 后台异步拉取最新数据后无缝更新
+    - loading 状态为 false
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-081
+  title: 300+ 技能列表下搜索输入不卡顿
+  dimension: 性能
+  priority: P1
+  platform: desktop
+  tags:
+    - 性能测试
+  precondition:
+    - 技能库包含 300 个以上技能（SPECIALIZED_INITIAL_LIMIT=300）
+  steps:
+    - action: 在搜索框快速输入搜索词
+      expected: ""
+    - action: 观察输入响应
+      expected: ""
+  expected_result:
+    - 搜索框输入无明显延迟
+    - 列表过滤在每次 keystroke 后实时更新
+    - 无页面卡顿
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-082
+  title: 加载更多使用预取数据时无需等待
+  dimension: 性能
+  priority: P2
+  platform: desktop
+  tags:
+    - 性能测试
+  precondition:
+    - 首页加载后有更多数据，且预取已完成
+  steps:
+    - action: 等待首页加载完成后 2-3 秒
+      expected: ""
+    - action: 点击"加载更多"
+      expected: ""
+  expected_result:
+    - 使用预取数据，列表即时追加
+    - 无网络请求等待
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-083
+  title: 未登录点击安装触发登录引导
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户未登录（authenticated=false）
+  steps:
+    - action: 在技能卡片上点击"安装"按钮
+      expected: ""
+  expected_result:
+    - 不执行安装操作
+    - 调用 onRequestAuth('login') 弹出登录页面
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-084
+  title: 未登录点击导入技能触发登录引导
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户未登录
+  steps:
+    - action: 点击"导入技能"按钮
+      expected: ""
+  expected_result:
+    - 不打开导入面板
+    - 弹出登录引导
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-085
+  title: 未登录点击对话触发登录引导
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户未登录
+  steps:
+    - action: 找到系统预装技能
+      expected: ""
+    - action: 点击"对话"按钮
+      expected: ""
+  expected_result:
+    - 不跳转到对话
+    - 弹出登录引导
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-086
+  title: 非 admin 用户不显示超管模式按钮
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 当前用户 role=user（普通用户）
+  steps:
+    - action: 打开技能库页面
+      expected: ""
+    - action: 观察页面顶部按钮
+      expected: ""
+  expected_result:
+    - 不显示"进入超管模式"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-087
+  title: 非 admin 用户即使 URL hack 也无法访问 admin API
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 用户 role=user，通过其他手段尝试调用 admin API
+  steps:
+    - action: 观察 shouldProbeAdminAccess 探测结果
+      expected: ""
+  expected_result:
+    - adminCapable 保持 false
+    - 超管功能不可用
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-088
+  title: 系统预装技能不可卸载
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 存在 default_installed=true 的系统预装技能
+  steps:
+    - action: 在技能卡片上查看操作按钮
+      expected: ""
+    - action: 在详情抽屉中查看操作按钮
+      expected: ""
+  expected_result:
+    - 卡片上无"卸载"按钮
+    - 详情抽屉中无"卸载"按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: SS-089
+  title: 超管模式下系统预装技能不可删除
+  dimension: 安全
+  priority: P0
+  platform: desktop
+  tags:
+    - 安全测试
+  precondition:
+    - 超管模式下打开系统预装技能的编辑面板
+  steps:
+    - action: 点击"删除技能"按钮
+      expected: ""
+  expected_result:
+    - 删除按钮 disabled
+    - 按钮文字显示"预装技能不可删除"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"

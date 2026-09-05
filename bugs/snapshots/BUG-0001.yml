@@ -1,0 +1,30 @@
+id: BUG-0001
+title: 示例Bug - 功能异常
+status: open
+severity: P2
+module: example-module
+created_at: 2026-09-01
+updated_at: 2026-09-01
+
+reproduce_steps:
+  - 打开应用
+  - 执行某个操作
+  - 观察结果
+expected: 功能正常运行
+actual: 出现异常行为
+environment:
+  platform: desktop
+  os: Windows
+  app_version: v1.0.0
+
+status_history:
+  - status: open
+    at: 2026-09-01
+    by: tester
+
+linked_code: []
+similar_bugs: []
+linked_testcases: []
+fix_note: ""
+verify_note: ""
+resolution: ""

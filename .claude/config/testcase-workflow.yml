@@ -1,0 +1,142 @@
+# .claude/config/testcase-workflow.yml
+
+project:
+  dev_repo: /path/to/your/dev/repo  # 请修改为实际的开发仓库路径
+
+  # ── module_map 字段说明 ────────────────────────────────────────────────────
+  # 每个模块可配置以下字段：
+  #   path        （必填）代码路径，相对于 dev_repo
+  #   priority    （可选）P0/P1/P2，标注核心模块
+  #   testable    （可选）false = 纯逻辑层/后端服务，不适合手工测试用例生成；
+  #                       缺省或 true = 可生成手工测试用例
+  #   scan_filter （可选）逗号分隔的 glob 模式，限定 path 目录内只扫描匹配的文件；
+  #                       用于同目录混有大量无关逻辑文件时精确控制扫描范围
+  #                       示例："composer-*" 或 "*.tsx"
+  #   ui_entry    （可选）UI 入口文件的绝对路径（相对于 dev_repo），
+  #                       用于 path 指向纯逻辑目录、UI 组件在另一目录的情况；
+  #                       skill 会额外读取该文件，优先从中提取用户可见操作路径
+  # ──────────────────────────────────────────────────────────────────────────
+  module_map:
+    # ════════════════════════════════════════════════════════════════════════
+    # 功能域分类说明（测试人员视角）
+    # ════════════════════════════════════════════════════════════════════════
+
+    # ── 核心对话（Chat）────────────────────────────────────────────────────
+    # 会话生命周期：会话创建/恢复/销毁、状态机、历史记录、转录控制
+    # 代码范围：lib/chat-session* + lib/chat-history* + lib/chat-transcript* + lib/chat-turns* + lib/chat-persistence*
+    chat-session: {path: apps/desktop/src/app/lib, scan_filter: "chat-session*,chat-history*,chat-transcript*,chat-turns*,chat-persistence*", priority: P0, testable: false}
+    # 输入框：富文本编辑、附件上传、FAQ 占位符、引用限制
+    # 代码范围：lib/composer-* + components/RichChatComposer.tsx
+    chat-composer: {path: apps/desktop/src/app/lib, scan_filter: "composer-*", ui_entry: apps/desktop/src/app/components/RichChatComposer.tsx, priority: P0}
+    # 界面渲染：消息块渲染、Markdown/表格、交互提示卡、选择菜单、推荐问题、对话导航
+    # 代码范围：lib/chat-response-blocks* + lib/chat-renderable* + lib/chat-content* + lib/chat-markdown* + lib/chat-interactive* + lib/chat-selection-menu* + lib/chat-suggested* + lib/chat-navigation* + components/OpenClawChatSurface.tsx
+    chat-ui: {path: apps/desktop/src/app/lib, scan_filter: "chat-response-blocks*,chat-renderable*,chat-content*,chat-markdown*,chat-interactive*,chat-selection-menu*,chat-suggested*,chat-navigation*", ui_entry: apps/desktop/src/app/components/OpenClawChatSurface.tsx, priority: P0}
+    # 输入框截图标注：截图标注器、内联覆盖层、附件菜单图标
+    composer-screenshot: {path: apps/desktop/src/app/components/composer}
+    # 研究输入框：研究模式下的选择菜单
+    research-composer: {path: apps/desktop/src/app/components/research-composer}
+    # 多标签工作区：标签栏、标签项、右键菜单、颜色/状态图标、溢出菜单
+    workspace-tabs: {path: apps/desktop/src/app/components/workspace-tabs}
+
+    # ── 桌面壳层 ────────────────────────────────────────────────────────────
+    # 桌面应用外壳：主壳布局、窗口控件（最小化/最大化/关闭）、页头、全局 chrome
+    shell: {path: apps/desktop/src/app/components/shell}
+
+    # ── 账号与权限 ──────────────────────────────────────────────────────────
+    # 登录/注册/个人信息/会员状态
+    auth: apps/desktop/src/app/components/account
+    # 密码修改、设备管理、登录日志
+    security-center: apps/desktop/src/app/components/security-center
+    # 系统通知、消息提醒、已读/未读状态
+    notifications: apps/desktop/src/app/components/notifications
+
+    # ── 内容与知识 ──────────────────────────────────────────────────────────
+    # 文档上传、检索、知识片段管理
+    knowledge-library: {path: apps/desktop/src/app/components/knowledge-library, scan_filter: "*.tsx"}
+    # 用户记忆条目的增删改查与上下文注入
+    memory: apps/desktop/src/app/components/memory
+    # 学习任务、进度追踪、徽章奖励
+    learning-flywheel: apps/desktop/src/app/components/learning-flywheel
+    # 文件预览：图片/文档/附件的预览渲染
+    file-preview: apps/desktop/src/app/components/file-preview
+
+    # ── 市场与支付 ──────────────────────────────────────────────────────────
+    # 股票/基金行情展示、自选列表
+    market: apps/desktop/src/app/components/market
+    # 套餐选择、支付渠道、订单状态
+    payment: apps/desktop/src/app/components/recharge
+    # 投资专家列表、订阅、推荐内容展示
+    investment-experts: {path: apps/desktop/src/app/components/investment-experts, priority: P0}
+    # Lobster 商店：内容/资源市场，浏览与购买
+    lobster-store: apps/desktop/src/app/components/lobster-store
+
+    # ── 系统与配置 ──────────────────────────────────────────────────────────
+    # 通用偏好、快捷键、主题、语言、通知开关
+    settings: apps/desktop/src/app/components/settings
+    # Cron 任务模板的创建与管理
+    cron-presets: {path: apps/desktop/src/app/components/cron-presets, priority: P0}
+    # Cron 任务运行面：创建弹窗、任务表单/列表/筛选、今日时间线、运行结果
+    cron-surface: {path: apps/desktop/src/app/components/cron-surface}
+    # 第三方数据源接入配置（数据库、API 等）
+    data-connections: apps/desktop/src/app/components/data-connections
+    # IM 机器人列表、配置、消息收发
+    im-bots: {path: apps/desktop/src/app/components/im-bots, priority: P0}
+
+    # ── 插件与扩展 ──────────────────────────────────────────────────────────
+    # AI 技能浏览、安装、评分
+    skill-store: {path: apps/desktop/src/app/components/skill-store, priority: P0}
+    # MCP 插件浏览、安装、版本管理
+    mcp-store: {path: apps/desktop/src/app/components/mcp-store, priority: P0}
+    # 浏览器扩展管理：安装、启用/禁用、权限配置
+    extensions: apps/desktop/src/app/components/extensions
+
+    # ── 前端应用 ────────────────────────────────────────────────────────────
+    # 官网/落地页：产品介绍、下载引导、营销页面（纯静态）
+    home-web: {path: home-web, testable: false}
+    # 管理后台：用户管理、品牌配置、支付配置、运营数据看板（React）
+    admin-web: admin-web/src
+    # 浏览器扩展（Chrome/Edge）：网页划词、内容采集、侧边栏 AI 对话
+    extension: {path: extension/src/app/components}
+    # 共享 UI 基础组件库：Button/Dialog/Chip 等通用控件（纯展示，随业务用例间接覆盖）
+    ui-kit: {path: apps/desktop/src/app/components/ui, testable: false}
+
+    # ── 后端服务 ────────────────────────────────────────────────────────────
+    # 用户鉴权、套餐/支付、Skill 同步、OEM 多租户、桌面端更新分发（Node.js）
+    control-plane: {path: services/control-plane/src, testable: false}
+    # 金融数据后端服务（行情/研报等金融接口，Node.js）
+    control-plane-finance: {path: servers/control-plane-finance, testable: false}
+    # 行情/资讯定时拉取、增量同步任务调度（Python）
+    data-sync: {path: services/data-sync-service/src, testable: false}
+    # 第三方数据源适配器、数据库同步、Provider 抽象层（Node.js）
+    data-connector: {path: services/data-connector/src, testable: false}
+    # 内置 Skill 定义、MCP 配置、爬虫/数据采集 Skill 包
+    openclaw: {path: services/openclaw/resources, testable: false}
+
+    # ── 基础服务 ────────────────────────────────────────────────────────────
+    # 无头浏览器代理服务，供 AI Agent 执行网页操作
+    agent-browser: {path: servers/agent-browser, testable: false}
+    # 金融大模型推理服务，提供股票分析、研报摘要等 AI 接口
+    fingpt: {path: servers/fingpt, testable: false}
+    # 轻量级任务队列/消息中间件服务
+    nano-banana: {path: servers/nano-banana, testable: false}
+
+    # ── 共享包 ──────────────────────────────────────────────────────────────
+    # K 线、报价、指数数据的标准化处理逻辑
+    market-sync-core: {path: packages/market-sync-core/src, testable: false}
+    # 供第三方集成的 API 封装与类型定义
+    sdk: {path: packages/sdk/src, testable: false}
+    # 跨模块复用的工具函数、类型、常量
+    shared: {path: packages/shared/src, testable: false}
+
+  scan_depth: 3
+  scan_file_threshold: 20   # 预扫描文件数阈值，超过则提示子模块选择
+  ignore:
+    - node_modules
+    - dist
+    - .next
+    - target
+    - generated_imgs
+
+experience:
+  path: testing/experience.md
+  auto_load: false

@@ -1,0 +1,21 @@
+# 测试用例 YAML 模板（由 /testcase-build 写入时参考）
+- id: <模块>-<序号>
+  title: <H5 用例场景描述>
+  dimension: <正常场景/异常场景/边界场景/兼容性场景/性能场景/安全场景>
+  priority: <P0/P1/P2>
+  platform: <desktop/web/mobile>
+  precondition:
+    - <前置条件>
+  steps:
+    - action: <操作描述>
+      expected: ""
+  expected_result:
+    - <预期结果>
+  linked_code:
+    ai: []        # [{path, line, confidence, note}] — /testcase-design 写入，不被覆盖
+    confirmed: [] # [{path, line, note}] — 人工确认后写入
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: <YYYY-MM-DD>
+  updated_at: <YYYY-MM-DD>

@@ -1,0 +1,12 @@
+; # 依赖
+; docs/th-ui-playwright-demo/node_modules/
+
+; # 测试产物
+; docs/th-ui-playwright-demo/allure-results/
+; docs/th-ui-playwright-demo/allure-report/
+; docs/th-ui-playwright-demo/test-results/
+
+
+; # 根目录散落模板（已有 testing/ 目录管理）
+; 生成测试用例模板1.md
+; 生成测试用例模板2.md

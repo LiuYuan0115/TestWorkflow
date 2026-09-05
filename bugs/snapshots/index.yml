@@ -1,0 +1,8 @@
+# Bug 索引文件
+bugs:
+  - id: BUG-0001
+    title: 示例Bug - 功能异常
+    status: open
+    severity: P2
+    module: example-module
+    created_at: 2026-09-01

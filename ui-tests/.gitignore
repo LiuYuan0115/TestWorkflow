@@ -1,0 +1,14 @@
+node_modules/
+dist/
+allure-results/
+allure-report/
+test-results/
+.auth-state.json
+.env
+.DS_Store
+.idea/
+*.swp
+
+# Midscene runtime data
+midscene_run/
+.midscene_cache/

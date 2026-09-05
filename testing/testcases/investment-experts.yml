@@ -1,0 +1,1084 @@
+- id: IE-001
+  title: 页面首次打开时正确加载专家列表
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录，网络正常
+    - 本地无缓存数据
+  steps:
+    - action: 打开投资专家页面
+      expected: ""
+    - action: 等待加载完成
+      expected: ""
+  expected_result:
+    - 显示加载骨架屏（6 个占位卡片）
+    - 加载完成后展示专家卡片列表
+    - 每张卡片显示头像、名称、副标题、描述、标签、使用人数
+    - 页面标题显示"AI智能体 · 专业投资研究与资产配置专家团队"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-002
+  title: 有本地缓存时优先展示缓存再后台刷新
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录，本地有缓存数据
+    - 网络正常
+  steps:
+    - action: 打开投资专家页面
+      expected: ""
+    - action: 观察加载过程
+      expected: ""
+  expected_result:
+    - 页面立即展示缓存中的专家列表（无骨架屏）
+    - 顶部显示"正在刷新专家目录…"提示
+    - 刷新完成后提示消失，列表可能更新
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-003
+  title: 专家按分类分组展示且每组显示数量标签
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 专家列表中有多个不同 domain 的专家
+  steps:
+    - action: 打开投资专家页面
+      expected: ""
+    - action: 查看列表区域
+      expected: ""
+  expected_result:
+    - 专家按分类分组展示，每组有分类标题和颜色圆点
+    - 每组标题旁显示该组专家数量
+    - 组内专家以网格布局排列
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-004
+  title: 切换到"全部专家"Tab 显示所有专家
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 页面已加载完成，有多个专家
+  steps:
+    - action: 点击"全部专家"Tab
+      expected: ""
+  expected_result:
+    - 列表显示所有专家（不区分来源和安装状态）
+    - Tab badge 显示总专家数
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-005
+  title: 切换到"和讯专家"Tab 仅显示和讯来源专家
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 专家列表中有和讯来源和非和讯来源的专家
+  steps:
+    - action: 点击"和讯专家"Tab
+      expected: ""
+  expected_result:
+    - 仅显示和讯来源的专家
+    - Tab badge 显示和讯专家数量
+    - 非和讯专家不出现在列表中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-006
+  title: 切换到"我的专家"Tab 仅显示已安装专家
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 用户已安装至少 1 个专家
+  steps:
+    - action: 点击"我的专家"Tab
+      expected: ""
+  expected_result:
+    - 仅显示已安装的专家
+    - Tab badge 显示已安装数量
+    - 卡片模式为 mine（显示"发起对话"和"移除"按钮）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-007
+  title: 点击分类标签筛选对应领域的专家
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 页面已加载，有多个分类可选
+  steps:
+    - action: 点击某个分类标签（如"宏观经济"）
+      expected: ""
+    - action: 观察列表变化
+      expected: ""
+  expected_result:
+    - 列表仅显示该分类下的专家
+    - 被选中的分类标签高亮（金色渐变背景）
+    - 其他分类标签恢复默认样式
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-008
+  title: 点击已选中的分类后切换到"全部"恢复全量展示
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 当前已选中某个分类筛选
+  steps:
+    - action: 点击"全部"分类标签
+      expected: ""
+  expected_result:
+    - 列表恢复显示所有专家
+    - "全部"标签高亮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-009
+  title: 输入专家名称关键词搜索到匹配结果
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 列表中有名为"张三"的专家
+  steps:
+    - action: 在搜索框输入"张三"
+      expected: ""
+  expected_result:
+    - 列表实时过滤，仅显示名称包含"张三"的专家
+    - 搜索为实时过滤，无需点击搜索按钮
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-010
+  title: 输入标签关键词搜索到匹配结果
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 某专家标签包含"量化"
+  steps:
+    - action: 在搜索框输入"量化"
+      expected: ""
+  expected_result:
+    - 标签包含"量化"的专家显示在结果中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-011
+  title: 清空搜索框后恢复全量展示
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 搜索框中有关键词，列表已过滤
+  steps:
+    - action: 清空搜索框内容
+      expected: ""
+  expected_result:
+    - 列表恢复显示当前 Tab 和分类下的所有专家
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-012
+  title: 点击专家卡片打开详情弹窗
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家列表已加载
+  steps:
+    - action: 点击任意一张专家卡片
+      expected: ""
+  expected_result:
+    - 弹窗打开，显示遮罩层
+    - 弹窗内展示：大头像、名称、副标题、状态标签、标签列表
+    - 显示使用人数、任务次数、评分
+    - 展示"专家介绍"、"核心技能"、"可执行任务示例"、"对话预览"四个区块
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-013
+  title: 详情未加载时弹窗显示加载状态
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家详情尚未加载（detailLoaded=false）
+  steps:
+    - action: 点击一个未查看过详情的专家卡片
+      expected: ""
+  expected_result:
+    - 弹窗打开，核心技能/任务示例/对话预览区域显示"正在加载专家详情…"
+    - 加载完成后内容替换为实际数据
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-014
+  title: 按 ESC 键关闭详情弹窗
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 详情弹窗已打开
+  steps:
+    - action: 按键盘 ESC 键
+      expected: ""
+  expected_result:
+    - 弹窗关闭，遮罩消失
+    - 回到专家列表页面
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-015
+  title: 点击遮罩层关闭详情弹窗
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 详情弹窗已打开
+  steps:
+    - action: 点击弹窗外的遮罩区域
+      expected: ""
+  expected_result:
+    - 弹窗关闭
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-016
+  title: 点击关闭按钮关闭详情弹窗
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 详情弹窗已打开
+  steps:
+    - action: 点击弹窗右上角的 X 按钮或底部"关闭"按钮
+      expected: ""
+  expected_result:
+    - 弹窗关闭
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-017
+  title: 已登录用户在列表页点击安装成功添加专家
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录
+    - 目标专家未安装
+  steps:
+    - action: 在专家卡片上点击"安装"按钮
+      expected: ""
+  expected_result:
+    - 按钮显示"安装中..."且禁用
+    - 安装成功后按钮变为"发起对话"
+    - 专家状态标签变为"已添加"
+    - "我的专家"Tab badge 数量 +1
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-018
+  title: 已登录用户在详情弹窗点击安装成功添加专家
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录
+    - 详情弹窗已打开，专家未安装
+  steps:
+    - action: 在详情弹窗底部点击"添加到我的专家"按钮
+      expected: ""
+  expected_result:
+    - 按钮显示"安装中..."且禁用
+    - 安装成功后按钮区域变为"发起对话"+"从我的专家移除"
+    - 状态标签变为"已添加"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-019
+  title: 在"我的专家"Tab 移除已安装专家
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已安装至少 1 个专家
+    - 当前在"我的专家"Tab
+  steps:
+    - action: 点击某专家卡片上的"移除"按钮
+      expected: ""
+  expected_result:
+    - 按钮显示"移除中..."且禁用
+    - 移除成功后该专家从"我的专家"列表消失
+    - "我的专家"Tab badge 数量 -1
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-020
+  title: 在详情弹窗中移除专家后弹窗关闭
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 详情弹窗已打开，专家已安装
+  steps:
+    - action: 点击弹窗底部"从我的专家移除"按钮
+      expected: ""
+  expected_result:
+    - 按钮显示"移除中..."
+    - 移除成功后弹窗自动关闭
+    - 列表中该专家状态更新为"未添加"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-021
+  title: 在列表页点击已安装专家的"发起对话"按钮
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家已安装，当前在全部/和讯 Tab
+  steps:
+    - action: 点击已安装专家卡片上的"发起对话"按钮
+      expected: ""
+  expected_result:
+    - 触发对话创建，跳转到与该专家的对话界面
+    - 不触发卡片详情弹窗打开
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-022
+  title: 在详情弹窗点击"发起对话"按钮
+  dimension: 正常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 详情弹窗已打开，专家已安装
+  steps:
+    - action: 点击弹窗底部的"发起对话"按钮
+      expected: ""
+  expected_result:
+    - 触发对话创建，跳转到与该专家的对话界面
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-023
+  title: 点击刷新按钮重新加载专家列表
+  dimension: 正常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 页面已加载完成
+  steps:
+    - action: 点击页面顶部的"刷新"按钮
+      expected: ""
+  expected_result:
+    - 按钮变为"刷新中…"且禁用
+    - 顶部显示"正在刷新专家目录…"提示
+    - 刷新完成后按钮恢复，提示消失
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-024
+  title: 未安装任何专家时"我的专家"显示空状态引导
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 用户未安装任何专家
+  steps:
+    - action: 切换到"我的专家"Tab
+      expected: ""
+  expected_result:
+    - 显示空状态页面：图标 + "还没有加入任何专家" + 引导文案
+    - 引导用户去全部专家页挑选
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-025
+  title: 推荐专家卡片显示"推荐"徽章
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 isRecommended=true
+  steps:
+    - action: 查看该专家卡片
+      expected: ""
+  expected_result:
+    - 卡片右上角显示金色"推荐"徽章（含星星图标）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-026
+  title: 热门专家卡片显示"热门"徽章
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 isHot=true 且 isRecommended=false
+  steps:
+    - action: 查看该专家卡片
+      expected: ""
+  expected_result:
+    - 卡片右上角显示红色"热门"徽章（含火焰图标）
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-027
+  title: 在线专家显示绿色状态圆点
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 isOnline=true
+  steps:
+    - action: 查看该专家卡片头像
+      expected: ""
+  expected_result:
+    - 头像右下角显示绿色圆点
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-028
+  title: 离线专家显示灰色状态圆点
+  dimension: 正常场景
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 isOnline=false
+  steps:
+    - action: 查看该专家卡片头像
+      expected: ""
+  expected_result:
+    - 头像右下角显示灰色圆点
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-029
+  title: 网络异常时加载专家列表失败显示错误提示
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 网络不可用或服务端返回错误
+  steps:
+    - action: 打开投资专家页面（网络断开）
+      expected: ""
+    - action: 等待加载超时
+      expected: ""
+  expected_result:
+    - 页面顶部显示错误提示横条，含错误信息和"重新加载"按钮
+    - 不显示崩溃或白屏
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-030
+  title: 点击"重新加载"按钮重新拉取专家列表
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 当前页面处于错误状态，显示"重新加载"按钮
+  steps:
+    - action: 恢复网络
+      expected: ""
+    - action: 点击"重新加载"按钮
+      expected: ""
+  expected_result:
+    - 重新发起请求，成功后错误提示消失
+    - 列表正常展示
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-031
+  title: 安装专家时接口返回错误显示错误提示
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录，网络正常但安装接口返回错误
+  steps:
+    - action: 点击"安装"按钮
+      expected: ""
+    - action: 等待安装结果
+      expected: ""
+  expected_result:
+    - 安装按钮恢复正常（不再显示"安装中..."）
+    - 页面顶部显示错误提示
+    - 专家状态仍为"未添加"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-032
+  title: 安装时详情加载失败不导致安装流程崩溃
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家详情未加载（detailLoaded=false）
+    - 详情加载接口返回错误
+  steps:
+    - action: 点击未查看过详情的专家的"安装"按钮
+      expected: ""
+  expected_result:
+    - 显示错误提示
+    - 安装按钮恢复正常
+    - 页面不崩溃
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-033
+  title: 移除专家时接口返回错误显示错误提示
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家已安装，移除接口返回错误
+  steps:
+    - action: 点击"移除"按钮
+      expected: ""
+    - action: 等待移除结果
+      expected: ""
+  expected_result:
+    - 移除按钮恢复正常
+    - 显示错误提示
+    - 专家状态仍为"已添加"，留在"我的专家"列表中
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-034
+  title: 未登录用户点击安装按钮跳转登录
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户未登录
+    - 目标专家未安装
+  steps:
+    - action: 点击专家卡片上的"安装"按钮
+      expected: ""
+  expected_result:
+    - 弹出登录弹窗（调用 onRequestAuth）
+    - 不触发安装流程
+    - 专家状态不变
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-035
+  title: 打开详情弹窗后详情加载失败弹窗保持打开
+  dimension: 异常场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 专家详情未加载，详情接口返回错误
+  steps:
+    - action: 点击专家卡片打开详情弹窗
+      expected: ""
+    - action: 等待详情加载失败
+      expected: ""
+  expected_result:
+    - 弹窗保持打开状态（不自动关闭）
+    - 核心技能/任务示例/对话预览区域显示空状态文案
+    - 页面顶部显示错误提示
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-036
+  title: 搜索无结果时显示空状态提示
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 专家列表已加载
+  steps:
+    - action: 在搜索框输入不存在的关键词（如"xxxxxzzz"）
+      expected: ""
+  expected_result:
+    - 列表显示空状态：显示"未找到匹配的专家"提示
+    - 提示文案引导用户清空搜索或换关键词
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-037
+  title: 手动刷新失败显示错误提示
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 页面已有专家列表，网络不可用
+  steps:
+    - action: 点击"刷新"按钮
+      expected: ""
+  expected_result:
+    - 刷新按钮恢复正常
+    - 显示错误提示
+    - 原有专家列表仍可查看
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-038
+  title: 切换 Tab 后当前分类在新 Tab 不存在时自动重置为"全部"
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 在"全部专家"Tab 选中"量化策略"分类
+    - 切换到"和讯专家"Tab（该 Tab 无"量化策略"分类）
+  steps:
+    - action: 在全部专家 Tab 点击"量化策略"分类
+      expected: ""
+    - action: 切换到"和讯专家"Tab
+      expected: ""
+  expected_result:
+    - 分类筛选自动重置为"全部"
+    - 显示和讯专家下的所有专家
+    - 不显示空列表或报错
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-039
+  title: 安装一个专家时其他专家的安装按钮仍可点击
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 列表中有多个未安装专家
+    - 正在安装专家 A（installBusy=true）
+  steps:
+    - action: 点击专家 A 的安装按钮
+      expected: ""
+    - action: 在安装中状态下点击专家 B 的安装按钮
+      expected: ""
+  expected_result:
+    - 专家 A 的安装按钮禁用显示"安装中..."
+    - 专家 B 的安装按钮可正常点击，触发独立安装流程
+    - 两个安装流程互不干扰
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-040
+  title: 刷新进行中时点击安装按钮正常触发安装
+  dimension: 异常场景
+  priority: P1
+  platform: desktop
+  precondition:
+    - 正在刷新专家目录（refreshing=true）
+  steps:
+    - action: 点击刷新按钮
+      expected: ""
+    - action: 在刷新中状态下点击某专家的安装按钮
+      expected: ""
+  expected_result:
+    - 安装流程正常触发，不受刷新状态影响
+    - 刷新完成后列表更新，安装状态正确反映
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-041
+  title: 搜索框输入空字符串显示全部专家
+  dimension: 边界值
+  priority: P1
+  platform: desktop
+  precondition:
+    - 专家列表已加载
+  steps:
+    - action: 在搜索框输入空格或空字符串
+      expected: ""
+  expected_result:
+    - 列表显示当前 Tab 和分类下的所有专家
+    - 不触发过滤
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-042
+  title: 和讯专家 Tab 无专家时显示空状态
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 专家列表中无和讯来源专家
+  steps:
+    - action: 切换到"和讯专家"Tab
+      expected: ""
+  expected_result:
+    - 显示空状态："还没有可用的和讯专家"
+    - 提示文案引导用户切换分类或 Tab
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-043
+  title: 专家详情中核心技能为空时显示空状态提示
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 skills 数组为空
+  steps:
+    - action: 打开该专家的详情弹窗
+      expected: ""
+  expected_result:
+    - 核心技能区域显示空状态文案："当前目录还没有补充核心技能卡片，建议直接发起一次任务试跑来验证效果。"
+    - 不显示空白或报错
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-044
+  title: 专家详情中任务示例为空时显示空状态提示
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 taskExamples 数组为空
+  steps:
+    - action: 打开该专家的详情弹窗
+      expected: ""
+  expected_result:
+    - 任务示例区域显示空状态文案："当前目录还没有提供任务示例，安装后可直接输入你的投资问题开始协作。"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-045
+  title: 专家详情中对话预览为空时显示空状态提示
+  dimension: 边界值
+  priority: P2
+  platform: desktop
+  precondition:
+    - 某专家 conversationPreview 数组为空
+  steps:
+    - action: 打开该专家的详情弹窗
+      expected: ""
+  expected_result:
+    - 对话预览区域显示空状态文案："当前目录还没有预置对话预览，添加后可直接在聊天中验证它的回复风格。"
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-046
+  title: 未登录用户点击安装跳转登录不泄露专家数据
+  dimension: 安全场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户未登录
+  steps:
+    - action: 点击任意专家的"安装"按钮
+      expected: ""
+    - action: 观察跳转行为
+      expected: ""
+  expected_result:
+    - 跳转到登录弹窗
+    - 不发起安装请求
+    - 不在 URL 或请求中泄露 accessToken
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"
+
+- id: IE-047
+  title: 已登录用户安装专家时携带正确的 accessToken
+  dimension: 安全场景
+  priority: P0
+  platform: desktop
+  precondition:
+    - 用户已登录，accessToken 有效
+  steps:
+    - action: 点击"安装"按钮
+      expected: ""
+    - action: 观察网络请求
+      expected: ""
+  expected_result:
+    - 安装请求携带 accessToken
+    - 服务端正确鉴权
+    - 安装成功
+  linked_code:
+    ai: []
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: active
+  created_at: "2026-05-21"
+  updated_at: "2026-05-21"

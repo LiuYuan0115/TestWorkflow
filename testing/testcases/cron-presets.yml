@@ -1,0 +1,3080 @@
+# cron-presets 测试用例 | 由 /testcase-build 生成 | 2026-05-22
+
+- id: "CP-001"
+  title: "打开定时任务页面后自动加载并展示任务列表"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "用户已登录"
+    - "系统中存在至少 1 个定时任务"
+  steps:
+    - action: "导航到定时任务页面"
+      expected: ""
+    - action: "等待页面加载完成"
+      expected: ""
+  expected_result:
+    - "页面标题显示\"定时任务\""
+    - "任务列表以表格视图展示（默认视图）"
+    - "表格包含状态、任务名称、Cron 表达式、类别、下次执行、最近状态、操作列"
+    - "顶部显示\"刷新\"和\"新建任务\"按钮"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-002"
+  title: "表格视图中每行展示任务的完整信息"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "当前为表格视图模式"
+    - "存在含描述的任务"
+  steps:
+    - action: "查看任务列表表格"
+      expected: ""
+    - action: "观察任一任务行的各列内容"
+      expected: ""
+  expected_result:
+    - "状态列显示 Toggle 开关"
+    - "名称列显示任务名称（粗体）和描述（灰色截断文本）"
+    - "Cron 表达式列以等宽字体展示"
+    - "类别列显示任务类别"
+    - "下次执行列显示格式化的时间"
+    - "最近状态列显示状态徽章"
+    - "操作列显示查看详情、编辑、删除图标按钮"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-003"
+  title: "卡片视图中展示任务基本信息和操作按钮"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "当前为卡片视图模式"
+    - "存在含标签的任务"
+  steps:
+    - action: "切换到卡片视图"
+      expected: ""
+    - action: "观察任一任务卡片的内容"
+      expected: ""
+  expected_result:
+    - "卡片顶部显示任务名称和 Toggle 开关"
+    - "显示描述文本（单行截断）"
+    - "显示类别 Chip 和标签 Chip"
+    - "显示 Cron 表达式（等宽字体）和状态徽章"
+    - "底部显示下次执行时间"
+    - "卡片底部有编辑和删除图标按钮"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-004"
+  title: "从默认表格视图切换到卡片视图"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "当前为表格视图（默认）"
+  steps:
+    - action: "点击视图切换按钮组中的卡片图标按钮"
+      expected: ""
+  expected_result:
+    - "任务列表从表格形式切换为卡片网格形式"
+    - "卡片图标按钮处于选中状态"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-005"
+  title: "从卡片视图切换回表格视图"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "当前为卡片视图"
+  steps:
+    - action: "点击视图切换按钮组中的列表图标按钮"
+      expected: ""
+  expected_result:
+    - "任务列表从卡片形式切换回表格形式"
+    - "列表图标按钮处于选中状态"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-006"
+  title: "点击\"全部\" Tab 显示所有任务"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中存在运行中和已暂停的任务"
+  steps:
+    - action: "点击\"全部\" Tab"
+      expected: ""
+  expected_result:
+    - "列表显示所有任务（包括运行中和已暂停）"
+    - "\"全部\" Tab 处于选中状态"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-007"
+  title: "点击\"运行中\" Tab 仅显示启用状态的任务"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中存在至少 1 个运行中的任务和 1 个已暂停的任务"
+  steps:
+    - action: "点击\"运行中\" Tab"
+      expected: ""
+  expected_result:
+    - "列表仅显示 enabled=true 的任务"
+    - "已暂停的任务不显示"
+    - "\"运行中\" Tab 显示任务计数"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-008"
+  title: "点击\"已暂停\" Tab 仅显示暂停状态的任务"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中存在至少 1 个已暂停的任务"
+  steps:
+    - action: "点击\"已暂停\" Tab"
+      expected: ""
+  expected_result:
+    - "列表仅显示 enabled=false 的任务"
+    - "运行中的任务不显示"
+    - "\"已暂停\" Tab 显示任务计数"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-009"
+  title: "Tab 上显示各状态的任务计数"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中存在 3 个运行中任务和 2 个已暂停任务"
+  steps:
+    - action: "观察 Tab 标签文本"
+      expected: ""
+  expected_result:
+    - "\"运行中\" Tab 显示\"运行中 (3)\""
+    - "\"已暂停\" Tab 显示\"已暂停 (2)\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-010"
+  title: "输入任务名称关键词搜索匹配结果"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在名称包含\"数据同步\"的任务"
+  steps:
+    - action: "在搜索框输入\"数据同步\""
+      expected: ""
+  expected_result:
+    - "列表仅显示名称包含\"数据同步\"的任务"
+    - "其他任务被过滤"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-011"
+  title: "输入描述关键词搜索匹配结果"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在描述包含\"每天\"的任务"
+  steps:
+    - action: "在搜索框输入\"每天\""
+      expected: ""
+  expected_result:
+    - "列表显示描述包含\"每天\"的任务"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-012"
+  title: "输入 Cron 表达式关键词搜索匹配结果"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在 Cron 表达式为\"0 9 * * *\"的任务"
+  steps:
+    - action: "在搜索框输入\"0 9\""
+      expected: ""
+  expected_result:
+    - "列表显示 Cron 表达式包含\"0 9\"的任务"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-013"
+  title: "搜索与 Tab 筛选联合生效"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在运行中的\"数据同步\"任务和已暂停的\"数据同步\"任务"
+  steps:
+    - action: "点击\"运行中\" Tab"
+      expected: ""
+    - action: "在搜索框输入\"数据同步\""
+      expected: ""
+  expected_result:
+    - "列表仅显示运行中且名称包含\"数据同步\"的任务"
+    - "已暂停的\"数据同步\"任务不显示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-014"
+  title: "打开新建弹窗，填写必填项后成功创建"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+  steps:
+    - action: "点击\"新建任务\"按钮"
+      expected: ""
+    - action: "在弹窗中输入任务名称\"测试任务\""
+      expected: ""
+    - action: "保持默认 Cron 表达式\"0 9 * * *\""
+      expected: ""
+    - action: "点击\"创建\"按钮"
+      expected: ""
+  expected_result:
+    - "弹窗自动关闭"
+    - "显示\"定时任务创建成功\" Snackbar 提示"
+    - "列表中新增该任务"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-015"
+  title: "新建时选择任务类别"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建任务弹窗已打开"
+  steps:
+    - action: "点击\"任务类别\"下拉框"
+      expected: ""
+    - action: "选择\"数据同步\""
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "任务创建成功"
+    - "列表中该任务的类别显示为\"数据同步\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-016"
+  title: "新建时通过可视化构建器设置 Cron 表达式"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在 Cron 构建器中选择\"每天\"频率"
+      expected: ""
+    - action: "设置小时为 10，分钟为 30"
+      expected: ""
+    - action: "观察表达式预览"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"30 10 * * *\""
+    - "自然语言描述显示\"每天 10:30 执行\""
+    - "任务创建成功，Cron 表达式为\"30 10 * * *\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-017"
+  title: "新建时选择\"创建后立即启用\"开关"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建任务弹窗已打开"
+  steps:
+    - action: "填写任务名称"
+      expected: ""
+    - action: "开启\"创建后立即启用\"开关"
+      expected: ""
+    - action: "点击\"创建\"按钮"
+      expected: ""
+  expected_result:
+    - "任务创建成功"
+    - "列表中该任务的 Toggle 开关处于开启状态"
+    - "任务出现在\"运行中\" Tab 下"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-018"
+  title: "新建成功后弹窗自动关闭并显示成功提示"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建任务弹窗已打开"
+    - "已填写有效数据"
+  steps:
+    - action: "点击\"创建\"按钮"
+      expected: ""
+    - action: "等待接口返回成功"
+      expected: ""
+  expected_result:
+    - "弹窗自动关闭"
+    - "页面底部显示\"定时任务创建成功\" Snackbar"
+    - "Snackbar 3 秒后自动消失"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-019"
+  title: "打开编辑弹窗，表单预填已有数据"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在名称为\"测试任务\"、描述为\"测试描述\"、Cron 为\"0 9 * * *\"的任务"
+  steps:
+    - action: "点击该任务的编辑按钮"
+      expected: ""
+  expected_result:
+    - "编辑弹窗打开"
+    - "任务名称输入框预填\"测试任务\""
+    - "描述输入框预填\"测试描述\""
+    - "Cron 表达式预填\"0 9 * * *\""
+    - "弹窗标题显示\"编辑定时任务\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-020"
+  title: "修改任务名称后保存成功"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "编辑任务弹窗已打开"
+    - "当前任务名称为\"测试任务\""
+  steps:
+    - action: "将任务名称修改为\"新任务名称\""
+      expected: ""
+    - action: "点击\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "弹窗关闭"
+    - "显示\"定时任务更新成功\" Snackbar"
+    - "列表中该任务名称更新为\"新任务名称\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-021"
+  title: "修改 Cron 表达式后保存成功"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "编辑任务弹窗已打开"
+    - "当前 Cron 表达式为\"0 9 * * *\""
+  steps:
+    - action: "在可视化构建器中修改为\"每小时\"频率，分钟设为 15"
+      expected: ""
+    - action: "点击\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "弹窗关闭"
+    - "显示\"定时任务更新成功\" Snackbar"
+    - "列表中该任务 Cron 表达式更新为\"15 * * * *\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-022"
+  title: "编辑成功后弹窗关闭并显示成功提示"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "编辑任务弹窗已打开"
+    - "已修改任意字段"
+  steps:
+    - action: "点击\"保存\"按钮"
+      expected: ""
+    - action: "等待接口返回成功"
+      expected: ""
+  expected_result:
+    - "弹窗自动关闭"
+    - "显示\"定时任务更新成功\" Snackbar"
+    - "Snackbar 3 秒后自动消失"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-023"
+  title: "点击删除按钮弹出确认对话框，显示任务名称"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在名称为\"待删除任务\"的任务"
+  steps:
+    - action: "点击该任务的删除按钮"
+      expected: ""
+  expected_result:
+    - "确认对话框弹出"
+    - "对话框标题显示\"确认删除\""
+    - "对话框内容显示\"确定要删除定时任务 '待删除任务' 吗？\""
+    - "显示警告图标"
+    - "显示\"取消\"和\"确认删除\"按钮"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-024"
+  title: "确认删除后任务从列表移除并显示成功提示"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "删除确认对话框已打开"
+  steps:
+    - action: "点击\"确认删除\"按钮"
+      expected: ""
+    - action: "等待接口返回成功"
+      expected: ""
+  expected_result:
+    - "对话框关闭"
+    - "显示\"定时任务已删除\" Snackbar"
+    - "该任务从列表中移除"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-025"
+  title: "取消删除后对话框关闭，任务不变"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "删除确认对话框已打开"
+  steps:
+    - action: "点击\"取消\"按钮"
+      expected: ""
+  expected_result:
+    - "对话框关闭"
+    - "任务仍在列表中"
+    - "无 Snackbar 提示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-026"
+  title: "运行中的任务 Toggle 关闭后变为已暂停"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在一个运行中的任务（enabled=true）"
+  steps:
+    - action: "点击该任务的 Toggle 开关，将其关闭"
+      expected: ""
+  expected_result:
+    - "Toggle 开关变为关闭状态"
+    - "显示\"定时任务已暂停\" Snackbar"
+    - "任务移至\"已暂停\" Tab 下"
+    - "卡片视图中任务透明度降低"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-027"
+  title: "已暂停的任务 Toggle 开启后变为运行中"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在一个已暂停的任务（enabled=false）"
+  steps:
+    - action: "点击该任务的 Toggle 开关，将其开启"
+      expected: ""
+  expected_result:
+    - "Toggle 开关变为开启状态"
+    - "显示\"定时任务已启用\" Snackbar"
+    - "任务移至\"运行中\" Tab 下"
+    - "卡片视图中任务透明度恢复正常"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-028"
+  title: "切换成功后显示对应的 Snackbar 提示"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在任意任务"
+  steps:
+    - action: "点击任务的 Toggle 开关"
+      expected: ""
+    - action: "等待接口返回成功"
+      expected: ""
+  expected_result:
+    - "显示成功提示 Snackbar（\"已启用\"或\"已暂停\"）"
+    - "Snackbar 3 秒后自动消失"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-029"
+  title: "点击任务行/卡片打开详情弹窗"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在至少 1 个任务"
+  steps:
+    - action: "点击任务行（表格视图）或任务卡片（卡片视图）"
+      expected: ""
+  expected_result:
+    - "详情弹窗打开"
+    - "弹窗标题显示任务名称"
+    - "弹窗右上角显示 Toggle 开关"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-030"
+  title: "详情弹窗展示任务完整信息"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务包含描述、标签、重试次数、超时时间、失败通知等完整信息"
+  steps:
+    - action: "观察详情弹窗内容"
+      expected: ""
+  expected_result:
+    - "显示任务描述"
+    - "显示类别、Cron 表达式、下次执行时间、最近状态"
+    - "显示重试次数、超时时间、失败通知开关状态"
+    - "显示创建时间"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-031"
+  title: "详情弹窗展示标签列表"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务包含 3 个标签"
+  steps:
+    - action: "滚动到标签区域"
+      expected: ""
+  expected_result:
+    - "显示\"标签\"标题"
+    - "以 Chip 形式展示 3 个标签"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-032"
+  title: "详情弹窗展示执行历史记录"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务有执行历史记录"
+  steps:
+    - action: "滚动到执行历史区域"
+      expected: ""
+  expected_result:
+    - "显示\"执行历史\"标题"
+    - "以表格形式展示执行记录（执行时间、状态、耗时、备注）"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-033"
+  title: "详情弹窗中点击\"编辑\"跳转到编辑弹窗"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+  steps:
+    - action: "点击\"编辑\"按钮"
+      expected: ""
+  expected_result:
+    - "详情弹窗关闭"
+    - "编辑弹窗打开"
+    - "编辑弹窗表单预填当前任务数据"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-034"
+  title: "详情弹窗中可切换任务启用/暂停状态"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务当前为运行中状态"
+  steps:
+    - action: "点击详情弹窗右上角的 Toggle 开关"
+      expected: ""
+  expected_result:
+    - "Toggle 开关状态切换"
+    - "显示\"定时任务已暂停\" Snackbar"
+    - "详情弹窗保持打开"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-035"
+  title: "选择\"每天\"频率，设置时分后表达式正确生成"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在执行频率下拉框选择\"每天\""
+      expected: ""
+    - action: "设置小时为 14，分钟为 30"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"30 14 * * *\""
+    - "自然语言描述显示\"每天 14:30 执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-036"
+  title: "选择\"每周\"频率，选择星期几后表达式正确生成"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在执行频率下拉框选择\"每周\""
+      expected: ""
+    - action: "设置小时为 9，分钟为 0"
+      expected: ""
+    - action: "点击选择周一、周三、周五"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"0 9 * * 1,3,5\""
+    - "自然语言描述显示\"每周周一、周三、周五 9:00 执行\""
+    - "选中的星期 Chip 高亮显示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-037"
+  title: "选择\"每月\"频率，设置日期后表达式正确生成"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在执行频率下拉框选择\"每月\""
+      expected: ""
+    - action: "设置日期为 15，小时为 10，分钟为 0"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"0 10 15 * *\""
+    - "自然语言描述显示\"每月 15 日 10:00 执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-038"
+  title: "选择\"每小时\"频率，设置分钟后表达式正确生成"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在执行频率下拉框选择\"每小时\""
+      expected: ""
+    - action: "设置分钟为 45"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"45 * * * *\""
+    - "自然语言描述显示\"每小时的第 45 分钟执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-039"
+  title: "选择\"按分钟\"频率，设置间隔后表达式正确生成"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "在执行频率下拉框选择\"按分钟\""
+      expected: ""
+    - action: "设置间隔为 15 分钟"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"*/15 * * * *\""
+    - "自然语言描述显示\"每 15 分钟执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-040"
+  title: "构建器底部实时预览表达式和自然语言描述"
+  dimension: "正常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "修改任意频率或时间参数"
+      expected: ""
+    - action: "观察构建器底部的预览区域"
+      expected: ""
+  expected_result:
+    - "表达式预览实时更新"
+    - "自然语言描述实时更新"
+    - "预览区域背景色为浅灰色"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-041"
+  title: "关闭可视化编辑器，手动输入合法 Cron 表达式"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "关闭\"使用可视化编辑器\"开关"
+      expected: ""
+    - action: "在文本框中输入\"0 */2 * * *\""
+      expected: ""
+  expected_result:
+    - "可视化构建器 UI 隐藏"
+    - "显示 Cron 表达式文本输入框"
+    - "输入框下方显示预设模板 Chip 列表"
+    - "输入框无错误提示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-042"
+  title: "点击\"每天早上 9 点\"模板填入表达式"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于关闭状态"
+  steps:
+    - action: "点击\"每天早上 9 点\" Chip"
+      expected: ""
+  expected_result:
+    - "Cron 表达式输入框填入\"0 9 * * *\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-043"
+  title: "点击\"工作日早上 8 点\"模板填入表达式"
+  dimension: "正常场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于关闭状态"
+  steps:
+    - action: "点击\"工作日早上 8 点\" Chip"
+      expected: ""
+  expected_result:
+    - "Cron 表达式输入框填入\"0 8 * * 1-5\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-044"
+  title: "设置重试次数为 5 并成功保存"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"重试次数\"输入框输入 5"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "任务创建/更新成功"
+    - "详情弹窗中显示重试次数为 5 次"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-045"
+  title: "设置超时时间为 60 秒并成功保存"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"超时时间\"输入框输入 60"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "任务创建/更新成功"
+    - "详情弹窗中显示超时时间为 60 秒"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-046"
+  title: "关闭失败通知开关并成功保存"
+  dimension: "正常场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "\"失败时发送通知\"开关默认开启"
+  steps:
+    - action: "关闭\"失败时发送通知\"开关"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "任务创建/更新成功"
+    - "详情弹窗中显示失败通知为\"未启用\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-047"
+  title: "添加 1 个标签后显示为 Chip"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在标签输入框输入\"测试标签\""
+      expected: ""
+    - action: "按回车键"
+      expected: ""
+  expected_result:
+    - "输入框上方显示\"测试标签\" Chip"
+    - "输入框清空"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-048"
+  title: "添加 5 个标签（上限）均正常显示"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "依次输入并添加 5 个标签"
+      expected: ""
+  expected_result:
+    - "5 个标签均以 Chip 形式显示"
+    - "输入框下方提示\"最多 5 个标签\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-049"
+  title: "详情弹窗中展示执行记录的时间、状态、耗时、备注"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务有 3 条执行记录"
+  steps:
+    - action: "滚动到执行历史区域"
+      expected: ""
+    - action: "观察表格内容"
+      expected: ""
+  expected_result:
+    - "表格显示 3 行记录"
+    - "每行包含执行时间（格式化为本地时间）、状态 Chip、耗时（秒）、备注"
+    - "状态 Chip 颜色与状态对应（成功=绿色，失败=红色，运行中=蓝色，超时=黄色）"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-050"
+  title: "点击刷新按钮重新加载列表数据"
+  dimension: "正常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+  steps:
+    - action: "点击\"刷新\"按钮"
+      expected: ""
+  expected_result:
+    - "刷新按钮短暂显示禁用状态"
+    - "列表重新加载"
+    - "显示最新的任务数据"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-051"
+  title: "下次执行在 1 分钟内显示\"即将执行\""
+  dimension: "正常场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在下次执行时间在 30 秒后的任务"
+  steps:
+    - action: "观察该任务的\"下次执行\"列"
+      expected: ""
+  expected_result:
+    - "显示\"即将执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-052"
+  title: "下次执行在 1 小时内显示\"N 分钟后\""
+  dimension: "异常场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "存在下次执行时间在 45 分钟后的任务"
+  steps:
+    - action: "观察该任务的\"下次执行\"列"
+      expected: ""
+  expected_result:
+    - "显示\"45 分钟后\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-053"
+  title: "列表加载接口返回错误时展示 Alert 错误提示"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "用户已登录"
+    - "列表加载接口返回 500 错误"
+  steps:
+    - action: "打开定时任务页面"
+      expected: ""
+    - action: "等待接口返回错误"
+      expected: ""
+  expected_result:
+    - "页面顶部显示红色 Alert 错误提示"
+    - "Alert 包含关闭按钮"
+    - "列表区域不显示任何任务"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-054"
+  title: "新建任务接口失败时显示\"创建失败，请重试\"提示"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建任务弹窗已打开"
+    - "已填写有效数据"
+    - "创建接口返回 500 错误"
+  steps:
+    - action: "点击\"创建\"按钮"
+      expected: ""
+    - action: "等待接口返回错误"
+      expected: ""
+  expected_result:
+    - "弹窗保持打开"
+    - "显示\"创建失败，请重试\" Snackbar（红色）"
+    - "表单数据保留"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-055"
+  title: "编辑任务接口失败时显示\"更新失败，请重试\"提示"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "编辑任务弹窗已打开"
+    - "已修改数据"
+    - "更新接口返回 500 错误"
+  steps:
+    - action: "点击\"保存\"按钮"
+      expected: ""
+    - action: "等待接口返回错误"
+      expected: ""
+  expected_result:
+    - "弹窗保持打开"
+    - "显示\"更新失败，请重试\" Snackbar（红色）"
+    - "修改的数据保留"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-056"
+  title: "删除任务接口失败时显示\"删除失败，请重试\"提示"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "删除确认对话框已打开"
+    - "删除接口返回 500 错误"
+  steps:
+    - action: "点击\"确认删除\"按钮"
+      expected: ""
+    - action: "等待接口返回错误"
+      expected: ""
+  expected_result:
+    - "对话框关闭"
+    - "显示\"删除失败，请重试\" Snackbar（红色）"
+    - "任务仍在列表中"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-057"
+  title: "Toggle 切换接口失败时显示\"操作失败，请重试\"提示"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "Toggle 接口返回 500 错误"
+  steps:
+    - action: "点击任务的 Toggle 开关"
+      expected: ""
+    - action: "等待接口返回错误"
+      expected: ""
+  expected_result:
+    - "显示\"操作失败，请重试\" Snackbar（红色）"
+    - "Toggle 开关状态保持不变或恢复原状态"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-058"
+  title: "提交时名称为空显示\"请输入任务名称\"错误"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "任务名称输入框留空"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "名称输入框下方显示红色错误提示\"请输入任务名称\""
+    - "输入框边框变为红色"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-059"
+  title: "名称超过 50 字符时显示长度超限错误"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在任务名称输入框输入 51 个字符"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "名称输入框下方显示红色错误提示\"名称不能超过 50 个字符\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-060"
+  title: "Cron 表达式为空时显示\"请输入 Cron 表达式\"错误"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于关闭状态"
+  steps:
+    - action: "清空 Cron 表达式输入框"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "Cron 输入框下方显示红色错误提示\"请输入 Cron 表达式\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-061"
+  title: "输入非法 Cron 表达式（如 4 段）显示\"无效的 Cron 表达式\"错误"
+  dimension: "异常场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于关闭状态"
+  steps:
+    - action: "在 Cron 表达式输入框输入\"0 9 * *\"（仅 4 段）"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "Cron 输入框下方显示红色错误提示\"无效的 Cron 表达式\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-062"
+  title: "描述超过 200 字符时显示长度超限错误"
+  dimension: "异常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在描述输入框输入 201 个字符"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "描述输入框下方显示红色错误提示\"描述不能超过 200 个字符\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-063"
+  title: "重试次数输入 -1 或 11 时显示范围错误"
+  dimension: "异常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"重试次数\"输入框输入 -1"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "重试次数输入框下方显示红色错误提示\"重试次数应在 0-10 之间\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-064"
+  title: "超时时间输入 0 或 3601 时显示范围错误"
+  dimension: "异常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"超时时间\"输入框输入 0"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "超时时间输入框下方显示红色错误提示\"超时时间应在 1-3600 秒之间\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-065"
+  title: "尝试添加第 6 个标签时被静默截断"
+  dimension: "异常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "已添加 5 个标签"
+  steps:
+    - action: "在标签输入框输入第 6 个标签"
+      expected: ""
+    - action: "按回车键"
+      expected: ""
+  expected_result:
+    - "第 6 个标签不被添加"
+    - "仅显示前 5 个标签"
+    - "输入框下方提示\"最多 5 个标签\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-066"
+  title: "搜索不存在的关键词时展示\"未找到匹配的任务\"空状态"
+  dimension: "异常场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中存在任务"
+  steps:
+    - action: "在搜索框输入不存在的关键词\"不存在的任务名称\""
+      expected: ""
+  expected_result:
+    - "列表区域显示空状态 UI"
+    - "显示搜索图标和\"未找到匹配的任务\"文本"
+    - "显示\"清除搜索\"按钮"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-067"
+  title: "任务无执行记录时展示\"暂无执行记录\""
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "详情弹窗已打开"
+    - "任务为新建任务，无执行记录"
+  steps:
+    - action: "滚动到执行历史区域"
+      expected: ""
+  expected_result:
+    - "显示\"暂无执行记录\"文本（灰色）"
+    - "不显示表格"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-068"
+  title: "任务名称输入恰好 50 字符（上限值）提交成功"
+  dimension: "边界场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在任务名称输入框输入恰好 50 个字符"
+      expected: ""
+    - action: "填写其他必填项并点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "无长度错误提示"
+    - "任务创建/更新成功"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-069"
+  title: "任务名称输入 51 字符提交失败"
+  dimension: "边界场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在任务名称输入框输入 51 个字符"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "名称输入框下方显示\"名称不能超过 50 个字符\"错误"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-070"
+  title: "描述输入恰好 200 字符提交成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在描述输入框输入恰好 200 个字符"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "无长度错误提示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-071"
+  title: "描述输入 201 字符提交失败"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在描述输入框输入 201 个字符"
+      expected: ""
+    - action: "点击\"创建\"/\"保存\"按钮"
+      expected: ""
+  expected_result:
+    - "表单不提交"
+    - "描述输入框下方显示\"描述不能超过 200 个字符\"错误"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-072"
+  title: "重试次数设为 0（下限值）提交成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"重试次数\"输入框输入 0"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "详情弹窗中显示重试次数为 0 次"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-073"
+  title: "重试次数设为 10（上限值）提交成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"重试次数\"输入框输入 10"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "详情弹窗中显示重试次数为 10 次"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-074"
+  title: "超时时间设为 1 秒（下限值）提交成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"超时时间\"输入框输入 1"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "详情弹窗中显示超时时间为 1 秒"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-075"
+  title: "超时时间设为 3600 秒（上限值）提交成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在\"超时时间\"输入框输入 3600"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "详情弹窗中显示超时时间为 3600 秒"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-076"
+  title: "添加恰好 5 个标签（上限值）成功"
+  dimension: "边界场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "依次添加 5 个标签"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+  expected_result:
+    - "表单提交成功"
+    - "详情弹窗中显示 5 个标签"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-077"
+  title: "按分钟频率间隔设为 1 分钟生成 `* * * * *`"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "选择\"按分钟\"频率"
+      expected: ""
+    - action: "设置间隔为 1 分钟"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"* * * * *\""
+    - "自然语言描述显示\"每分钟执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-078"
+  title: "按分钟频率间隔设为 59 分钟生成 `*/59 * * * *`"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "选择\"按分钟\"频率"
+      expected: ""
+    - action: "设置间隔为 59 分钟"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"*/59 * * * *\""
+    - "自然语言描述显示\"每 59 分钟执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-079"
+  title: "每月频率日期设为 31 号生成表达式"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "选择\"每月\"频率"
+      expected: ""
+    - action: "设置日期为 31，小时为 0，分钟为 0"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"0 0 31 * *\""
+    - "自然语言描述显示\"每月 31 日 0:00 执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-080"
+  title: "每天频率小时设为 0 分钟设为 0 生成 `0 0 * * *`"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "选择\"每天\"频率"
+      expected: ""
+    - action: "设置小时为 0，分钟为 0"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"0 0 * * *\""
+    - "自然语言描述显示\"每天 0:00 执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-081"
+  title: "每天频率小时设为 23 分钟设为 59 生成 `59 23 * * *`"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+    - "可视化编辑器开关处于开启状态"
+  steps:
+    - action: "选择\"每天\"频率"
+      expected: ""
+    - action: "设置小时为 23，分钟为 59"
+      expected: ""
+  expected_result:
+    - "表达式预览显示\"59 23 * * *\""
+    - "自然语言描述显示\"每天 23:59 执行\""
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-082"
+  title: "全部任务都是运行中状态时，已暂停 Tab 显示空状态"
+  dimension: "边界场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中所有任务均为运行中状态"
+  steps:
+    - action: "点击\"已暂停\" Tab"
+      expected: ""
+  expected_result:
+    - "列表区域显示空状态 UI"
+    - "显示\"没有已暂停的任务\"文本"
+    - "显示\"所有任务都在运行中\"提示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-083"
+  title: "全部任务都是已暂停状态时，运行中 Tab 显示空状态"
+  dimension: "安全场景"
+  priority: "P2"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+    - "系统中所有任务均为已暂停状态"
+  steps:
+    - action: "点击\"运行中\" Tab"
+      expected: ""
+  expected_result:
+    - "列表区域显示空状态 UI"
+    - "显示\"没有运行中的任务\"文本"
+    - "显示\"所有任务都已暂停，启用任务后将在此处显示\"提示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-084"
+  title: "搜索框输入 `<script>alert(1)</script>` 不触发 XSS"
+  dimension: "安全场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "定时任务页面已加载"
+  steps:
+    - action: "在搜索框输入 `<script>alert(1)</script>`"
+      expected: ""
+    - action: "观察页面行为"
+      expected: ""
+  expected_result:
+    - "不弹出 alert 对话框"
+    - "搜索框内容被转义或过滤"
+    - "列表显示搜索无结果空状态"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-085"
+  title: "任务名称输入 HTML 标签不被渲染为 DOM 元素"
+  dimension: "安全场景"
+  priority: "P0"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在任务名称输入框输入 `<b>粗体任务</b>`"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+    - action: "观察列表中该任务的名称显示"
+      expected: ""
+  expected_result:
+    - "任务创建成功"
+    - "列表中任务名称显示为纯文本 `<b>粗体任务</b>`"
+    - "不渲染为粗体 DOM 元素"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
+
+- id: "CP-086"
+  title: "描述字段输入 `<img onerror>` 不触发脚本执行"
+  dimension: "安全场景"
+  priority: "P1"
+  platform: "desktop"
+  precondition:
+    - "新建/编辑任务弹窗已打开"
+  steps:
+    - action: "在描述输入框输入 `<img src=x onerror=alert(1)>`"
+      expected: ""
+    - action: "填写其他必填项并提交"
+      expected: ""
+    - action: "打开详情弹窗查看描述"
+      expected: ""
+  expected_result:
+    - "任务创建成功"
+    - "不弹出 alert 对话框"
+    - "描述内容被转义或过滤显示"
+  linked_code:
+    ai:
+      - "apps/desktop/src/app/components/cron-presets/CronPresetsView.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetFormDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetsTable.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronExpressionBuilder.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetCard.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/DeleteConfirmDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetExecutionHistory.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetToggle.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetStatusBadge.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/CronPresetDetailDialog.tsx"
+      - "apps/desktop/src/app/components/cron-presets/components/EmptyStateView.tsx"
+    confirmed: []
+  similar_testcases: []
+  linked_bugs: []
+  status: "active"
+  created_at: "2026-05-22"
+  updated_at: "2026-05-22"
