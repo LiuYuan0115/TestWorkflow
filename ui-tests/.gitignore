@@ -1,14 +1,28 @@
+# Dependencies
 node_modules/
-dist/
+package-lock.json
+
+# Test artifacts
 allure-results/
 allure-report/
 test-results/
-.auth-state.json
-.env
-.DS_Store
-.idea/
-*.swp
 
-# Midscene runtime data
-midscene_run/
-.midscene_cache/
+# Environment
+.env
+.auth-state.json
+
+# Build
+dist/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.pids

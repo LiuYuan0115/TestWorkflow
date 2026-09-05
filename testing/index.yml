@@ -1,33 +1,3 @@
 modules:
-  chat-composer:
-    file: testcases/chat-composer.yml
-    total: 59
-    last_updated: "2026-05-21"
-  chat-ui:
-    file: testcases/chat-ui.yml
-    total: 77
-    last_updated: "2026-05-27"
-  chat-session:
-    file: testcases/chat-session.yml
-    total: 69
-    last_updated: "2026-05-21"
-  investment-experts:
-    file: testcases/investment-experts.yml
-    total: 47
-    last_updated: "2026-05-21"
-  cron-presets:
-    file: testcases/cron-presets.yml
-    total: 86
-    last_updated: "2026-05-22"
-  im-bots:
-    file: testcases/im-bots.yml
-    total: 81
-    last_updated: "2026-05-22"
-  skill-store:
-    file: testcases/skill-store.yml
-    total: 89
-    last_updated: "2026-05-22"
-  mcp-store:
-    file: testcases/mcp-store.yml
-    total: 95
-    last_updated: "2026-05-22"
+  # 模块统计索引
+  # 使用 /testcase-build 自动更新
